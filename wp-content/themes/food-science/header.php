@@ -5,12 +5,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, user-scalable=no">
   <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/assets/css/app.css" type="text/css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" type="text/css" />
-  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
-  <script type="text/JavaScript" src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-  <script type="text/JavaScript" src="<?= get_template_directory_uri(); ?>/assets/js/main.js"></script>
-  <title><?php bloginfo('title'); ?></title>
-  <?php wp_head(); ?>
+  <?php
+  wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css');
+  wp_enqueue_style('google-web-fonts', 'https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+  // WordPress側で設定済み
+  // wp_register_script('jquery', 'jqueryまでのパス');
+  wp_enqueue_script('food-science-main', get_template_directory_uri() . '/assets/js/main.js', ['jquery'], '更新しましたよ２');
+  wp_enqueue_script('jquery');
+  wp_head();
+  ?>
 </head>
 
 <body <?php body_class(); ?>>

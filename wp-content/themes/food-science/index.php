@@ -1,26 +1,27 @@
 <?php get_header(); ?>
 
-<section class="kv">
-  <div class="kv_inner">
-    <h1 class="kv_title">FOOD SCIENCE<br>TOKYO</h1>
-    <p class="kv_subtitle">FROM JAPAN</p>
-  </div>
+<?php if (is_home()): ?>
+  <section class="kv">
+    <div class="kv_inner">
+      <h1 class="kv_title">FOOD SCIENCE<br>TOKYO</h1>
+      <p class="kv_subtitle">FROM JAPAN</p>
+    </div>
 
-  <div class="kv_slider js-slider">
-    <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-01@2x.jpg');"></div>
-    <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-02@2x.jpg');"></div>
-    <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-03@2x.jpg');"></div>
-  </div>
-  <div class="kv_overlay"></div>
+    <div class="kv_slider js-slider">
+      <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-01@2x.jpg');"></div>
+      <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-02@2x.jpg');"></div>
+      <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-03@2x.jpg');"></div>
+    </div>
+    <div class="kv_overlay"></div>
 
-  <div class="kv_scroll">
-    <a href="#concept" class="kv_scrollLink">
-      <p>SCROLL DOWN</p>
-      <div class="kv_scrollIcon"><i class="fa-solid fa-chevron-down"></i></div>
-    </a>
-  </div>
-</section>
-
+    <div class="kv_scroll">
+      <a href="#concept" class="kv_scrollLink">
+        <p>SCROLL DOWN</p>
+        <div class="kv_scrollIcon"><i class="fa-solid fa-chevron-down"></i></div>
+      </a>
+    </div>
+  </section>
+<?php endif; ?>
 
 <section class="section section-concept" id="concept">
   <div class="section_inner">
