@@ -41,7 +41,7 @@
         スパイシーでヘルシーな本場の味をお楽しみ下さい。
       </p>
       <div class="section_btn">
-        <a href="" class="btn btn-more">もっと見る</a>
+        <a href="<?= get_permalink(23); ?>" class="btn btn-more">もっと見る</a>
       </div>
     </div>
   </div>
@@ -52,13 +52,14 @@
     <div class="section_inner">
       <header class="section_header">
         <h2 class="heading heading-primary"><span>最新情報</span>NEWS</h2>
-        <div class="section_headerBtn"><a href="" class="btn btn-more">もっと見る</a></div>
+        <?php
+        //お知らせカテゴリのオブジェクトを取得
+        $news = get_term_by('slug', 'news', 'category');
+        // お知らせカテゴリのリンクを取得
+        $news_link = get_term_link($news);
+        ?>
+        <div class="section_headerBtn"><a href="<?= $news_link; ?>" class="btn btn-more">もっと見る</a></div>
       </header>
-
-
-
-
-
 
 
       <div class="section_body">
@@ -96,7 +97,7 @@
         <li class="infoList_item">
           <span class="infoList_prepend">メールでのお問い合わせ</span>
           <div class="infoList_btn">
-            <a href="" class="btn btn-primary">お問い合わせ</a>
+            <a href="<?= home_url('/contact/'); ?>" class="btn btn-primary">お問い合わせ</a>
           </div>
         </li>
       </ul>
@@ -118,7 +119,7 @@
       <div class="section_body">
         <p>〒162-0846 東京都新宿区市谷左内町21-13</p>
         <div class="section_btn">
-          <a href="#" class="btn btn-primary">アクセスはこちら</a>
+          <a href="<?= get_permalink(32); ?>" class="btn btn-primary">アクセスはこちら</a>
         </div>
       </div>
     </div>
