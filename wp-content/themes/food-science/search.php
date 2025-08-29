@@ -20,13 +20,19 @@
             <?php endwhile; ?>
 
           </div>
-          
+
         <?php else: ?>
 
           <div class="section_desc">
             <p>検索結果はありませんでした。</p>
           </div>
 
+        <?php endif; ?>
+
+        <?php if (function_exists('wp_pagenavi')): ?>
+          <div class="pagination">
+            <?php wp_pagenavi(); ?>
+          </div>
         <?php endif; ?>
       </div>
 
