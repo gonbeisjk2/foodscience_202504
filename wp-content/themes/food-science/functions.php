@@ -16,3 +16,27 @@ function my_document_title_separator($separator)
   $separator = '|';
   return $separator;
 }
+
+/**
+ * Contact Form 7の時には整形機能をOFFにする
+ */
+add_filter('wpcf7_autop_or_not', 'my_wpcf7_autop');
+function my_wpcf7_autop()
+{
+  return false;
+}
+
+
+/**
+ * ショートコードの例
+ */
+function my_shortcode_func($param)
+{
+  if ($param['weather'] === '☀️') {
+    return "<p>{$param['weather']}今日は快晴です！</p>";
+  } elseif ($param['weather'] === '☔️') {
+    return "<p>{$param['weather']}今日は雨です...</p>";
+  }
+}
+// 1: ショートコード名 / 2: 動かす関数
+add_shortcode('my_shortcode', 'my_shortcode_func');
