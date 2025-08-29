@@ -40,3 +40,21 @@ function my_shortcode_func($param)
 }
 // 1: ショートコード名 / 2: 動かす関数
 add_shortcode('my_shortcode', 'my_shortcode_func');
+
+/**
+ * メインクエリを変更する
+ */
+add_action('pre_get_posts', 'my_pre_get_posts');
+function my_pre_get_posts($query)
+{
+  // 管理ページ、メインクエリ以外は処理しない
+  if (is_admin() || !$query->is_main_query()) {
+    return; //処理しない（関数の処理をここでストップする）
+  }
+
+  // トップページの場合
+  if ($query->is_home()) {
+    $query->set('posts_per_page', 3);
+    return;
+  }
+}

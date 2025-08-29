@@ -69,6 +69,35 @@
         <?php endwhile; ?>
       <?php endif; ?>
 
+      <?php
+      $args = [
+        'post_type' => 'post', //post = 投稿, page = 固定ページ, attachment = メディアファイル
+        'posts_per_page' => 3, // 3件
+        'post__not_in' => [get_the_ID()], // 現在のページのIDを指定して、一覧には含めないようにする
+      ];
+      $latest_query = new WP_Query($args);
+
+      if ($latest_query->have_posts()):
+      ?>
+        <section class="latest">
+          <header class="latest_header">
+            <h2 class="heading heading-secondary">最新情報</h2>
+          </header>
+
+          <div class="latest_body">
+            <div class="cardList">
+              <?php while ($latest_query->have_posts()): $latest_query->the_post(); ?>
+
+                <?php get_template_part('template-parts/loop', 'news'); ?>
+
+              <?php endwhile;
+              wp_reset_postdata();
+              ?>
+            </div>
+          </div>
+        </section>
+      <?php endif; ?>
+
     </div>
   </div>
 </main>
