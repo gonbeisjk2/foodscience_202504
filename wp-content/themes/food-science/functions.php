@@ -58,3 +58,28 @@ function my_pre_get_posts($query)
     return;
   }
 }
+
+/**
+ * 「保護中」の文字を削除する
+ */
+add_filter('protected_title_format', 'my_protected_title');
+function my_protected_title($title)
+{
+  return '%s';
+}
+
+
+add_filter('the_password_form', 'my_password_form');
+function my_password_form()
+{
+  remove_filter('the_content', 'wpautop');
+  $wp_login_url = wp_login_url();
+  $html = <<<HTML
+    <p>パスワードを入力してください</p>
+    <form class="post-password-form" action="{$wp_login_url}?action=postpass">
+      <input type="password" name="post_password">
+      <input type="submit" name="送信" value="送信">
+    </form>
+HTML;
+  return $html;
+}
