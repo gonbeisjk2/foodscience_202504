@@ -7,11 +7,48 @@
       <p class="kv_subtitle">FROM JAPAN</p>
     </div>
 
-    <div class="kv_slider js-slider">
-      <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-01@2x.jpg');"></div>
-      <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-02@2x.jpg');"></div>
-      <div class="kv_sliderItem" style="background-image: url('<?= get_template_directory_uri(); ?>/assets/img/home/kv-03@2x.jpg');"></div>
-    </div>
+    <?php
+    $args = [
+      // 投稿タイプ: main-visual
+      'post_type' => 'main-visual',
+      // 件数: 全件
+      'posts_per_page' => -1,
+      // 日付が古い順
+      'orderby' => 'date',
+      // 昇順
+      'order' => 'ASC', //DESCは降順
+      // カスタムフィールドの設定
+      'meta_query' => [
+        'relation' => 'OR', //以下の条件のいずれかに当てはまるもの
+        // 条件1. 公開終了日が今の日時よりも先のもの
+        [
+          'key' => 'end_date',
+          'type' => 'DATETIME',
+          'value' => wp_date('Y-m-d H:i:s'), // 今の日時
+          'compare' => '>', // end_date > 今の日時
+        ],
+        // 条件2. 公開終了日が設定されていないもの
+        [
+          'key' => 'end_date',
+          'compare' => 'NOT EXISTS', //存在しないもの
+        ],
+      ],
+    ];
+    $the_query = new WP_Query($args);
+    ?>
+    <?= wp_date('Y-m-d H:i:s') ?>
+    <?php if ($the_query->have_posts()): ?>
+      <div class="kv_slider js-slider">
+        <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
+          <?php
+          $pic = get_field('pic');
+          ?>
+          <div class="kv_sliderItem" style="background-image: url('<?= $pic['url']; ?>');"></div>
+        <?php endwhile;
+        wp_reset_postdata(); ?>
+      </div>
+    <?php endif; ?>
+
     <div class="kv_overlay"></div>
 
     <div class="kv_scroll">
