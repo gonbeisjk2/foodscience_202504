@@ -1,6 +1,16 @@
 <?php get_header(); ?>
 
 <main>
+
+  <?php
+  // カスタムフィールドの値を取得する関数
+  $custom = get_post_meta(get_the_ID(), 'test');
+  // var_dump($custom);
+  foreach ($custom as $c) {
+    echo "<p>{$c}</p>";
+  }
+  ?>
+
   <div class="section">
     <div class="section_inner">
 
