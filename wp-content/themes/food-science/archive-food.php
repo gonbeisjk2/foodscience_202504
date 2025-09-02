@@ -10,9 +10,7 @@
       <?php
       $menu_terms = get_terms(['taxonomy' => 'menu']);
       ?>
-      <pre>
-        <?php var_dump($menu_terms); ?>
-      </pre>
+
       <?php if (!empty($menu_terms)): ?>
         <?php foreach ($menu_terms as $menu): ?>
           <section class="section_body">
@@ -22,13 +20,33 @@
               </a>
             </h3>
             <ul class="foodList">
-
-              <?php if (have_posts()):  ?>
-                <?php while (have_posts()): the_post(); ?>
+              <?php
+              $args = [
+                // - 投稿タイプ: フード(food)
+                'post_type' => 'food',
+                // - 件数: 全件(-1)
+                'posts_per_page' => -1,
+                // - タクソノミー: メニュー(menu)
+                // - タクソノミーの種類(ターム): 食事(meal), ドリンク(drink)
+                // - タクソノミーの条件: AND(且つ)
+                'tax_query' => [
+                  // 'relation' => 'AND',
+                  [
+                    'taxonomy' => 'menu',
+                    'terms' => $menu->slug,
+                    'field' => 'slug',
+                  ],
+                ],
+              ];
+              $the_query = new WP_Query($args);
+              ?>
+              <?php if ($the_query->have_posts()):  ?>
+                <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
                   <li class="foodList_item">
                     <?php get_template_part('template-parts/loop', 'food'); ?>
                   </li>
-                <?php endwhile; ?>
+                <?php endwhile;
+                wp_reset_postdata(); ?>
               <?php endif; ?>
 
             </ul>
