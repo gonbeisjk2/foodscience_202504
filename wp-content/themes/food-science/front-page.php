@@ -36,7 +36,10 @@
     ];
     $the_query = new WP_Query($args);
     ?>
-    <?= wp_date('Y-m-d H:i:s') ?>
+    <?php
+    echo wp_date('Y-m-d H:i:s');
+    echo date('Y-m-d H:i:s');
+    ?>
     <?php if ($the_query->have_posts()): ?>
       <div class="kv_slider js-slider">
         <?php while ($the_query->have_posts()): $the_query->the_post(); ?>
