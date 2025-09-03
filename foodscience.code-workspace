@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "wp-content/themes/food-science"
+		}
+	],
+	"settings": {
+		"liveSassCompile.settings.formats": [
+			{
+				"format": "compressed",
+				"extensionName": ".css",
+				"savePath": "~/../css",
+				"savePathReplacementPairs": null
+			}
+		],
+		"liveSassCompile.settings.excludeList": [
+			"/**/node_modules/**",
+			"/.vscode/**",
+			"/wp-admin/**",
+			"/wp-includes/**",
+			"/wp-content/plugins/**"
+		],
+	}
+}

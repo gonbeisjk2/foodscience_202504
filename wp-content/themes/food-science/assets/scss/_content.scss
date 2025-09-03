@@ -1,0 +1,12 @@
+@mixin content-style {
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  p {
+    margin-bottom: 2em;
+    line-height: 1.8;
+  }
+}

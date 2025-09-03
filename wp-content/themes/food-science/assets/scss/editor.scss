@@ -1,0 +1,5 @@
+// _content.scssを紐付け
+@use './content' as *;
+
+// _content.scssの中で定義されているミックスイン content-styleを読み込む
+@include content-style;
