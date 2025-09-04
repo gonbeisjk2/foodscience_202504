@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<main>
+<main <?php if (wp_theme_has_theme_json()): ?>class="is-full" <?php endif; ?>>
 
   <?php
   // カスタムフィールドの値を取得する関数
