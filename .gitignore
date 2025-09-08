@@ -12,3 +12,5 @@
 /wp-content/uploads
 /wp-content/index.php
 .DS_Store
+/wp-content/ai1wm-backups
+/wp-content/updraft
